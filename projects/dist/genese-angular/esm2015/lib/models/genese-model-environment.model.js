@@ -1,0 +1,6 @@
+export class GeneseModelEnvironment {
+    constructor() {
+        this.path = '';
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZ2VuZXNlLW1vZGVsLWVudmlyb25tZW50Lm1vZGVsLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vZ2VuZXNlL2FuZ3VsYXIvc3JjL2xpYi9tb2RlbHMvZ2VuZXNlLW1vZGVsLWVudmlyb25tZW50Lm1vZGVsLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE1BQU0sT0FBTyxzQkFBc0I7SUFBbkM7UUFDSSxTQUFJLEdBQUksRUFBRSxDQUFDO0lBQ2YsQ0FBQztDQUFBIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIEdlbmVzZU1vZGVsRW52aXJvbm1lbnQge1xuICAgIHBhdGggPz0gJyc7XG59XG4iXX0=
