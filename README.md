@@ -1,26 +1,26 @@
-# genese-angular  [![npm version](https://badge.fury.io/js/genese-angular.svg)](https://badge.fury.io/js/genese-angular)
+# @genese/angular  
 
-genese-angular is an Angular library which replaces all your data-services and all your mappers. Less code, less tests, less bugs, less waste of time. Under the hood, genese-angular uses the core of the Genese framework : [genese-mapper](https://www.npmjs.com/package/genese-mapper)
+@genese/angular is an Angular library which allows you to remove your data-services and your DTO mappers. This module is a part of the [@genese](https://www.npmjs.com/package/genese) framework.
 
-Simple example using genese-angular: [genese-angular-demo](https://github.com/gillesfabre34/genese-angular-demo)
+Simple example using @genese/angular: [@genese/angular-demo](https://github.com/geneseframework/genese-angular-demo)
 
 
 ## Table of Contents
-* [Why use Genese ?](#why-use-genese-)
+* [Why use @genese/angular ?](#why-use-geneseangular-)
 * [Installation](#installation)
 * [Models](#models)
 * [Methods](#methods)
 
 
-## Why use Genese ?
+## Why use @genese/angular ?
 
-Genese is a powerful tool which will improve your productivity in building web apps. 
+@genese/angular is a powerful tool which will improve your productivity in building web apps. 
 
-genese-angular is the Genese module used for Angular applications, which will save your time and help you to code Angular applications much faster. With genese-angular, all your Angular data-services will disappear ! Genese replaces the http requests located in your services, and replaces too the mappers used to format data coming from backend into typed objects.
+This module will allow you to remove all your Angular data-services. It replaces the http requests located in your services, and replaces the mappers used to format data coming from the backend into typed objects.
 
 Returning typed objects from your data-services to your components is fundamental : if you do not, your component could receive incorrect data from the backend, and your application would crash automatically. That's why the mappers are so important. Unfortunately, writing mappers is long and fastidious. More, you need to write unit tests for your mappers, and add some mock values to be able to do these tests. Idem for your http requests, which should be tested with some tools like HttMock. That's why writing data-services is so long and fastidious. 
 
-So, what would you say if Genese could do ALL OF THAT for you ? Yes, that's right : Genese calls the http requests for you, and uses a Generic mapper which will send you back objects automatically typed ! In the next example, that means that you can simply destroy the file `book-data.service.ts` and put it in the garbage, with its associated test file `book-data.service.spec.ts`.
+So, what would you say if Genese could do all of that for you ? Yes, that's right : @genese/angular calls the http requests for you, and uses a Generic mapper which will send you back objects automatically typed ! In the next example, that means that you can simply destroy the file `book-data.service.ts` and put it in the garbage, with its associated test file `book-data.service.spec.ts`.
 
 * Example
 
@@ -109,7 +109,7 @@ export class BookDataService {
 }
 ``` 
 
-With Genese, you can put this file in the garbage, simply by calling GeneseService inside your components, like this :
+With @genese/angular, you can put this file in the garbage, simply by calling GeneseService inside your components, like this :
 
 
 Supposing that in your environment.ts, `genese.api = http://localhost:3000` .
