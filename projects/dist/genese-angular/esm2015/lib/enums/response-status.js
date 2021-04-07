@@ -1,6 +1,0 @@
-export var ResponseStatus;
-(function (ResponseStatus) {
-    ResponseStatus["FAILED"] = "FAILED";
-    ResponseStatus["SUCCESS"] = "SUCCESS";
-})(ResponseStatus || (ResponseStatus = {}));
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmVzcG9uc2Utc3RhdHVzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vZ2VuZXNlL2FuZ3VsYXIvc3JjL2xpYi9lbnVtcy9yZXNwb25zZS1zdGF0dXMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsTUFBTSxDQUFOLElBQVksY0FHWDtBQUhELFdBQVksY0FBYztJQUN4QixtQ0FBaUIsQ0FBQTtJQUNqQixxQ0FBbUIsQ0FBQTtBQUNyQixDQUFDLEVBSFcsY0FBYyxLQUFkLGNBQWMsUUFHekIiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgZW51bSBSZXNwb25zZVN0YXR1cyB7XG4gIEZBSUxFRCA9ICdGQUlMRUQnLFxuICBTVUNDRVNTID0gJ1NVQ0NFU1MnLFxufVxuIl19
