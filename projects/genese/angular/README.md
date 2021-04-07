@@ -1,26 +1,26 @@
-# genese-angular  [![npm version](https://badge.fury.io/js/genese-angular.svg)](https://badge.fury.io/js/genese-angular)
+# @genese/angular
 
-genese-angular is an Angular library which replaces all your data-services and all your mappers. Less code, less tests, less bugs, less waste of time. Under the hood, genese-angular uses the core of the Genese framework : [genese-mapper](https://www.npmjs.com/package/genese-mapper)
+@genese/angular is an Angular library which allows you to remove your data-services and your DTO mappers. This module is a part of the [@genese](https://www.npmjs.com/package/genese) framework.
 
-Simple example using genese-angular: [genese-angular-demo](https://github.com/gillesfabre34/genese-angular-demo)
+Simple example using @genese/angular: [@genese/angular-demo](https://github.com/geneseframework/genese-angular-demo)
 
 
 ## Table of Contents
-* [Why use Genese ?](#why-use-genese-)
+* [Why use @genese/angular ?](#why-use-geneseangular-)
 * [Installation](#installation)
 * [Models](#models)
 * [Methods](#methods)
 
 
-## Why use Genese ?
+## Why use @genese/angular ?
 
-Genese is a powerful tool which will improve your productivity in building web apps. 
+@genese/angular is a powerful tool which will improve your productivity in building web apps.
 
-genese-angular is the Genese module used for Angular applications, which will save your time and help you to code Angular applications much faster. With genese-angular, all your Angular data-services will disappear ! Genese replaces the http requests located in your services, and replaces too the mappers used to format data coming from backend into typed objects.
+This module will allow you to remove all your Angular data-services. It replaces the http requests located in your services, and replaces the mappers used to format data coming from the backend into typed objects.
 
-Returning typed objects from your data-services to your components is fundamental : if you do not, your component could receive incorrect data from the backend, and your application would crash automatically. That's why the mappers are so important. Unfortunately, writing mappers is long and fastidious. More, you need to write unit tests for your mappers, and add some mock values to be able to do these tests. Idem for your http requests, which should be tested with some tools like HttMock. That's why writing data-services is so long and fastidious. 
+Returning typed objects from your data-services to your components is fundamental : if you do not, your component could receive incorrect data from the backend, and your application would crash automatically. That's why the mappers are so important. Unfortunately, writing mappers is long and fastidious. More, you need to write unit tests for your mappers, and add some mock values to be able to do these tests. Idem for your http requests, which should be tested with some tools like HttMock. That's why writing data-services is so long and fastidious.
 
-So, what would you say if Genese could do ALL OF THAT for you ? Yes, that's right : Genese calls the http requests for you, and uses a Generic mapper which will send you back objects automatically typed ! In the next example, that means that you can simply destroy the file `book-data.service.ts` and put it in the garbage, with its associated test file `book-data.service.spec.ts`.
+So, what would you say if Genese could do all of that for you ? Yes, that's right : @genese/angular calls the http requests for you, and uses a Generic mapper which will send you back objects automatically typed ! In the next example, that means that you can simply destroy the file `book-data.service.ts` and put it in the garbage, with its associated test file `book-data.service.spec.ts`.
 
 * Example
 
@@ -109,7 +109,7 @@ export class BookDataService {
 }
 ``` 
 
-With Genese, you can put this file in the garbage, simply by calling GeneseService inside your components, like this :
+With @genese/angular, you can put this file in the garbage, simply by calling GeneseService inside your components, like this :
 
 
 Supposing that in your environment.ts, `genese.api = http://localhost:3000` .
@@ -125,10 +125,10 @@ export class BooksComponent {
     }
 
     this.booksGenese.getOne('/books', '1').subscribe((book: Book) => {
-         // book is the data returned by 
-         // the request http://localhost:3000/books/1
-         // and formatted with type Book
-    });
+    // book is the data returned by 
+    // the request http://localhost:3000/books/1
+    // and formatted with type Book
+});
 }
 ```
 
@@ -164,22 +164,22 @@ import { GeneseEnvironmentService } from 'angular';
 import { environment } from '../environments/environment';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
 
-  constructor(geneseEnvironmentService: GeneseEnvironmentService) {
-      geneseEnvironmentService.setEnvironment(environment.genese);
-  }
+    constructor(geneseEnvironmentService: GeneseEnvironmentService) {
+        geneseEnvironmentService.setEnvironment(environment.genese);
+    }
 }
 ```
 
 `environment.ts`
 ```ts
 export const environment = {
-  production: false,
+    production: false,
     genese: {
         api: 'http://localhost:3000'
     }
@@ -246,7 +246,7 @@ export class HomeComponent {
 }
 ```
 
-[Top](#table-of-contents) 
+[Top](#table-of-contents)
 ## Models
 
 Genese needs to be able to find all the properties of your models. That's why it is imperative to set default values to all the properties of your models, including inside nested objects.
@@ -310,11 +310,11 @@ export class Book = {
 [Top](#table-of-contents) -> [Models](#models)
 ### Indexable types
 
-Suppose that you wait http responses like this 
+Suppose that you wait http responses like this
 ```ts
 {
     en: 'The caves of steel',
-    fr: 'Les cavernes d\'acier'
+        fr: 'Les cavernes d\'acier'
 }
 ``` 
 and suppose that you don't know in advance how many properties will have your response. In this example, you don't know in advance how many translations you will receive and in which languages.
@@ -332,11 +332,11 @@ Now, suppose that your http request returns something more complex like this :
 {
     en: {
         country: 'England',
-        name: 'The caves of steel'
+            name: 'The caves of steel'
     },
     fr: {
         country: 'France',
-        name: 'Les cavernes d\'acier'
+            name: 'Les cavernes d\'acier'
     }
 }
 ```
@@ -345,14 +345,14 @@ In this case, you simply need to define your Genese model like this :
 ```ts
 export class Book = {
     [key: string]: {
-        country?: string,
+    country?: string,
         name?: string
-    } = {
-        gnIndexableType: {
-            country: '',
-            name: ''
-        }
+} = {
+    gnIndexableType: {
+        country: '',
+        name: ''
     }
+}
 }
 ```
 
@@ -362,16 +362,16 @@ You'll need to use it every time you'll have to use indexable types.
 [Top](#table-of-contents) -> [Models](#models)
 ### Translations
 
-Supposing that you have some fields which are translated in many languages, you'll probably want to have a GET request which will return the object translated in one of these languages. For example, if your data are like this 
+Supposing that you have some fields which are translated in many languages, you'll probably want to have a GET request which will return the object translated in one of these languages. For example, if your data are like this
 ```ts
 {
     en: {
         country: 'England',
-        name: 'The caves of steel'
+            name: 'The caves of steel'
     },
     fr: {
         country: 'France',
-        name: 'Les cavernes d\'acier'
+            name: 'Les cavernes d\'acier'
     }
 }
 ```
@@ -380,7 +380,7 @@ you may want to receive a response with only the french language, like this :
 ```ts
 {
     country: 'France',
-    name: 'Les cavernes d\'acier'
+        name: 'Les cavernes d\'acier'
 }
 ```
 Genese can do that for you. You will need to use the ``translate()`` method, which is described [here](#translatetdata-t-language-string-t).
@@ -390,25 +390,25 @@ To be able to do that, you need to construct your model like this :
 export class Book = {
     gnTranslate: {
         [key: string]: {
-            country: string,
-            name: string
-        }
-    } = {
-        gnIndexableType: {
-            country: '',
-            name: ''
-        }
+    country: string,
+        name: string
+}
+} = {
+    gnIndexableType: {
+        country: '',
+        name: ''
     }
+}
 }
 ```
 The ``gnTranslate`` key is a specific keyword used by Genese to understand that some fields may be translated.
 You'll need to use it every time you'll have to use translations. The usage of ``gnIndexableType`` is described [here](#indexable-types).
 You'll find usage informations about `translate()` method [here](#translatedata-any-language-string-any)
 
-[Top](#table-of-contents) 
+[Top](#table-of-contents)
 ## Methods
 
-Genese provides many useful methods, like "classic" CRUD operations, but other interesting methods which will help you to translate objects or to map them in the type that you want. 
+Genese provides many useful methods, like "classic" CRUD operations, but other interesting methods which will help you to translate objects or to map them in the type that you want.
 
 | method           | Usage          |
 | --------------   | -------------- |
@@ -440,9 +440,9 @@ create() method needs that your app respects the Genese standards :
 * You must add a genese param to your model like this :
 ```ts
 {
-  "genese": {
-    "path": "/books"
-  }
+    "genese": {
+        "path": "/books"
+    }
 }
 ```
 * The endpoint must wait a POST method.
@@ -454,7 +454,7 @@ create() method needs that your app respects the Genese standards :
 Supposing that in your environment.ts, genese.api = http://localhost:3000`
 
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -481,10 +481,10 @@ export class BooksComponent {
     }
 
     this.booksGenese.create(book).subscribe((newBook: Book) => {
-         // newBook is the object returned by 
-         // the POST request http://localhost:3000/book
-         // and formatted with type Book
-    });
+    // newBook is the object returned by 
+    // the POST request http://localhost:3000/book
+    // and formatted with type Book
+});
 }
 ```
 
@@ -495,10 +495,10 @@ The `create()` method supposes that the backend returns data corresponding to th
 ``books.component.ts``
 ```ts
     this.booksGenese.create('/books', book, {mapData: false}).subscribe((newBook: Book) => {
-         // newBook is the object returned by 
-         // the POST request http://localhost:3000/books
-         // and formatted with type Book
-    });
+    // newBook is the object returned by 
+    // the POST request http://localhost:3000/books
+    // and formatted with type Book
+});
 ```
 
 
@@ -510,7 +510,7 @@ The `create()` method supposes that the backend returns data corresponding to th
 ### createCustom< T >(path: string, body?: object, options?: RequestOptions): Observable<T | any>
 
 Same as [create()](#create-t-newobject-t-options-requestoptions-observablet--any), but Contrary to create() method, you can use a custom api path and you don't need to parameter your model with a genese property. Moreover, the parameter "body" can be any object : you don't need to use a body with T type.
-                                                       
+
 The backend must wait a POST http request.
 
 **Usage**
@@ -518,7 +518,7 @@ The backend must wait a POST http request.
 Supposing that in your environment.ts, genese.api = http://localhost:3000`
 
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -543,10 +543,10 @@ export class BooksComponent {
     }
 
     this.booksGenese.createCustom('/books', book).subscribe((newBook: Book) => {
-         // newBook is the object returned by 
-         // the POST request http://localhost:3000/books
-         // and formatted with type Book
-    });
+    // newBook is the object returned by 
+    // the POST request http://localhost:3000/books
+    // and formatted with type Book
+});
 }
 ```
 
@@ -557,10 +557,10 @@ The `createCustom()` method supposes that the backend returns data corresponding
 ``books.component.ts``
 ```ts
     this.booksGenese.create('/custom-books-path', book, {mapData: false}).subscribe((newBook: Book) => {
-         // newBook is the object returned by 
-         // the POST request http://localhost:3000/custom-books-path
-         // and formatted with type Book
-    });
+    // newBook is the object returned by 
+    // the POST request http://localhost:3000/custom-books-path
+    // and formatted with type Book
+});
 ```
 
 
@@ -568,33 +568,33 @@ The `createCustom()` method supposes that the backend returns data corresponding
 
 
 
- 
+
 [Top](#table-of-contents) -> [Methods](#methods)
- ### delete< T >(id: string): Observable< ResponseStatus>
- 
- This method is used to remove an object in database with a DELETE http request and returns a `ResponseStatus`, which is equal to `FAILED` or `SUCCESS`.
- 
- delete() method needs that your app respects the Genese standards :
- 
- * You must add a genese param to your model like this :
- 
+### delete< T >(id: string): Observable< ResponseStatus>
+
+This method is used to remove an object in database with a DELETE http request and returns a `ResponseStatus`, which is equal to `FAILED` or `SUCCESS`.
+
+delete() method needs that your app respects the Genese standards :
+
+* You must add a genese param to your model like this :
+
 ```ts
 {
-  "genese": {
-    "path": "/books"
-  }
+    "genese": {
+        "path": "/books"
+    }
 }
 ```
 
- * The endpoint must wait a DELETE method.
- 
- * The api path must respect the REST api standards for a create() method, like this : ``http://my-path/book/id``
- 
+* The endpoint must wait a DELETE method.
+
+* The api path must respect the REST api standards for a create() method, like this : ``http://my-path/book/id``
+
 **Usage**
 
 Supposing that in your environment.ts, `genese.api = http://localhost:3000`
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -616,9 +616,9 @@ export class BooksComponent {
     }
 
     this.booksGenese.delete('1').subscribe((response: ResponseStatus) => {
-         // send the DELETE request http://localhost:3000/books/1
-         // and returns 'SUCCESS' if the property 'ok' of the DELETE http response is equal to true, and 'FAILED' if not.
-    });
+    // send the DELETE request http://localhost:3000/books/1
+    // and returns 'SUCCESS' if the property 'ok' of the DELETE http response is equal to true, and 'FAILED' if not.
+});
 }
 ```
 
@@ -627,21 +627,21 @@ export class BooksComponent {
 
 
 
- 
+
 [Top](#table-of-contents) -> [Methods](#methods)
- ### deleteCustom< T >(path: string, options?: RequestOptions): Observable< ResponseStatus>
- 
- 
+### deleteCustom< T >(path: string, options?: RequestOptions): Observable< ResponseStatus>
+
+
 Same as [delete()](#delete-t-id-string-observable-responsestatus-), but contrary to create() method, you can use a custom api path and you don't need to parameter your model with a genese property.
-                                                       
+
 The backend must wait a DELETE http request.
- 
+
 **Usage**
 
 Supposing that in your environment.ts, `genese.api = http://localhost:3000`
 
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -660,9 +660,9 @@ export class BooksComponent {
     }
 
     this.booksGenese.deleteCustom('/custom-books-path', '1').subscribe((response: ResponseStatus) => {
-         // send the DELETE request http://localhost:3000/custom-books-path/1
-         // and returns 'FAILED' if the property 'ok' of the DELETE http response is equal to true, and 'SUCCESS' if not.
-    });
+    // send the DELETE request http://localhost:3000/custom-books-path/1
+    // and returns 'FAILED' if the property 'ok' of the DELETE http response is equal to true, and 'SUCCESS' if not.
+});
 }
 ```
 
@@ -693,12 +693,12 @@ export class BooksComponent {
     }
 
     this.booksGenese.fetch('/custom-books-path/1', 'get').subscribe((book: Book) => {
-         // sends the fetch GET request http://localhost:3000/custom-books-path/1
-         // and returns data object formatted with the type Book.
-    });
+    // sends the fetch GET request http://localhost:3000/custom-books-path/1
+    // and returns data object formatted with the type Book.
+});
 }
 ```
- 
+
 
 
 
@@ -715,9 +715,9 @@ getAll() method needs that your app respects the Genese standards :
 * You must add a genese param to your model like this :
 ```ts
 {
-  "genese": {
-    "path": "/books"
-  }
+    "genese": {
+        "path": "/books"
+    }
 }
 ```
 * The http request must be a GET method
@@ -743,7 +743,7 @@ In this case, the ``getAll()`` method returns an observable of array of Book, fo
 
 Supposing that in your environment.ts, ``genese.api = http://localhost:3000``
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -765,10 +765,10 @@ export class BooksComponent {
     }
 
     this.booksGenese.getAll().subscribe((books: Book[]) => {
-         // books is the array of data returned by 
-         // the GET request http://localhost:3000/books
-         // and formatted with type Book
-    });
+    // books is the array of data returned by 
+    // the GET request http://localhost:3000/books
+    // and formatted with type Book
+});
 }
 ```
 * Filters
@@ -777,10 +777,10 @@ You can add some filters to your http request very simply, just like this :
 
 ```ts
     this.booksGenese.getAll({author: 'Isaac Asimov'}).subscribe((books: Book[]) => {
-         // books is the array of data returned by 
-         // the GET request http://localhost:3000/books?author=Isaac%20Asimov
-         // and formatted with type Book
-    });
+    // books is the array of data returned by 
+    // the GET request http://localhost:3000/books?author=Isaac%20Asimov
+    // and formatted with type Book
+});
 }
 ```
 
@@ -802,7 +802,7 @@ The backend must wait a GET http request.
 
 Supposing that in your environment.ts, ``genese.api = http://localhost:3000``
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -821,10 +821,10 @@ export class BooksComponent {
     }
 
     this.booksGenese.getAllCustom('/books').subscribe((books: Book[]) => {
-         // books is the array of data returned by 
-         // the GET request http://localhost:3000/books
-         // and formatted with type Book
-    });
+    // books is the array of data returned by 
+    // the GET request http://localhost:3000/books
+    // and formatted with type Book
+});
 }
 ```
 * Filters
@@ -833,10 +833,10 @@ You can add some filters to your http request very simply, just like this :
 
 ```ts
     this.booksGenese.getAllCustom('/custom-books-path', {author: 'Isaac Asimov'}).subscribe((books: Book[]) => {
-         // books is the array of data returned by 
-         // the GET request http://localhost:3000/custom-books-path?author=Isaac%20Asimov
-         // and formatted with type Book
-    });
+    // books is the array of data returned by 
+    // the GET request http://localhost:3000/custom-books-path?author=Isaac%20Asimov
+    // and formatted with type Book
+});
 }
 ```
 
@@ -881,7 +881,7 @@ and the http response would probably be like this :
             name: 'The Stars'
         }
     ],
-    totalData: 231
+        totalData: 231
 }
 ```
 
@@ -899,9 +899,9 @@ export class BooksComponent {
     }
 
     this.booksGenese.getAllWithPagination('/books', {pageIndex: 2, pageSize: 5}).subscribe((response: { totalResults: number, results: Book[]) => {
-         // The GET request called is http://localhost:3000/books?pIndex=2&pSize=4
-         // In this case, totalResults = 231 and results is an array of 5 books, typed with the Book model.
-    });
+    // The GET request called is http://localhost:3000/books?pIndex=2&pSize=4
+    // In this case, totalResults = 231 and results is an array of 5 books, typed with the Book model.
+});
 }
 ```
 
@@ -947,7 +947,7 @@ This method needs that your app respects the Genese standards.
 
 Supposing that in your environment.ts, `genese.api = http://localhost:3000` .
 
-``array-of-array-of-books.model.ts`` 
+``array-of-array-of-books.model.ts``
 ```ts
 export class ArrayOfArraysOfBooks implements ArrayResponse {
     gnArrayResponse?: Book[][] = [[new Book()]];
@@ -968,10 +968,10 @@ export class ArrayOfArrayOfBooksComponent {
     }
 
     this.arrayOfArraysOfBooksGenese.getArray().subscribe((arrayOfArraysOfBooks: Book[][]) => {
-         // arrayOfArraysOfBooks is the value of the property gnArrayResponse of the data 
-         // returned by the request http://localhost:3000/books/1
-         // and formatted with type Book[][]
-    });
+    // arrayOfArraysOfBooks is the value of the property gnArrayResponse of the data 
+    // returned by the request http://localhost:3000/books/1
+    // and formatted with type Book[][]
+});
 }
 ```
 
@@ -1013,7 +1013,7 @@ This method needs that your app respects the Genese standards :
 
 Supposing that in your environment.ts, `genese.api = http://localhost:3000` .
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -1035,10 +1035,10 @@ export class BooksComponent {
     }
 
     this.booksGenese.getOne('1').subscribe((book: Book) => {
-         // book is the data returned by 
-         // the request http://localhost:3000/books/1
-         // and formatted with type Book
-    });
+    // book is the data returned by 
+    // the request http://localhost:3000/books/1
+    // and formatted with type Book
+});
 }
 ```
 
@@ -1059,7 +1059,7 @@ The backend must wait a GET http request.
 
 Supposing that in your environment.ts, `genese.api = http://localhost:3000` .
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -1078,10 +1078,10 @@ export class BooksComponent {
     }
 
     this.booksGenese.getOne('/custom-books-path','1').subscribe((book: Book) => {
-         // book is the data returned by 
-         // the request http://localhost:3000/custom-books-path/1
-         // and formatted with type Book
-    });
+    // book is the data returned by 
+    // the request http://localhost:3000/custom-books-path/1
+    // and formatted with type Book
+});
 }
 ```
 
@@ -1095,7 +1095,7 @@ export class BooksComponent {
 [Top](#table-of-contents) -> [Methods](#methods)
 ### request< T >(path: string, method: RequestMethod, options?: RequestOptions): Observable<T | any>
 
-It can happens, for one or another reason, that your endpoints are not respecting REST standards. If you can't modify the backend's code, it can be problematic, especially when the http actions of the endpoints are not the real actions that they should do. As example, it can happens that your GET or DELETE methods are done with POST requests. It is a bad practice, but sometimes you don't have any choice. In this case, usual Genese CRUD methods are difficult to use. As example, the `getOne()` Genese method will send a GET request; if the backend is waiting a POST request, the `getOne()` method will crash. 
+It can happens, for one or another reason, that your endpoints are not respecting REST standards. If you can't modify the backend's code, it can be problematic, especially when the http actions of the endpoints are not the real actions that they should do. As example, it can happens that your GET or DELETE methods are done with POST requests. It is a bad practice, but sometimes you don't have any choice. In this case, usual Genese CRUD methods are difficult to use. As example, the `getOne()` Genese method will send a GET request; if the backend is waiting a POST request, the `getOne()` method will crash.
 
 To solve this problem, you can use the Genese method `request()`, which is using the Angular HttpClient method `request`, which is able to take in parameter the action verb of the http request. In one word, you'll can send a GET request using the POST action verb.
 
@@ -1103,7 +1103,7 @@ To solve this problem, you can use the Genese method `request()`, which is using
 
 Supposing that in your environment.ts, `genese.api = http://localhost:3000`
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -1122,11 +1122,11 @@ export class BooksComponent {
     }
 
     this.booksGenese.request('/books/1', 'post').subscribe((book: Book) => {
-        // this method sends the POST request http://localhost:3000/books/1
-        // and returns the data returned by the backend
-        // By default, these data will be formatted in type Book
-        // If you want to receive the data without any formatting, just set the property mapData of the options param to false.
-    });
+    // this method sends the POST request http://localhost:3000/books/1
+    // and returns the data returned by the backend
+    // By default, these data will be formatted in type Book
+    // If you want to receive the data without any formatting, just set the property mapData of the options param to false.
+});
 }
 ```
 
@@ -1139,7 +1139,7 @@ export class BooksComponent {
 ### translate(data: any, language: string): any
 
 This methods translates data containing properties with translated in many languages into data containing these properties translated in one of these languages. These data must respect Genese standard formats which are more detailed [here](#translations).
-The `translate()` method is generally used in combination with other Genese CRUD methods, like this : 
+The `translate()` method is generally used in combination with other Genese CRUD methods, like this :
 
 **Usage**
 
@@ -1156,12 +1156,12 @@ export class BooksComponent {
     }
 
     this.booksGenese.getOne('/books', '1').subscribe((book: Book) => {
-        const translatedBook = this.booksGenese.translate(book, 'fr');
-        return translatedBook;
-         // translatedBook is the data returned by 
-         // the GET request http://localhost:3000/books/1
-         // and with translatable fields translated in french
-    });
+    const translatedBook = this.booksGenese.translate(book, 'fr');
+    return translatedBook;
+    // translatedBook is the data returned by 
+    // the GET request http://localhost:3000/books/1
+    // and with translatable fields translated in french
+});
 }
 ```
 
@@ -1172,28 +1172,28 @@ For example, if the Book model is like this :
 export class Book = {
     gnTranslate: {
         [key: string]: {
-            country: string,
-            name: string
-        }
-    } = {
-        gnIndexableType: {
-            country: '',
-            name: ''
-        }
+    country: string,
+        name: string
+}
+} = {
+    gnIndexableType: {
+        country: '',
+        name: ''
     }
+}
 }
 ```
 
-and if the data returned by the GET request are 
+and if the data returned by the GET request are
 ```ts
 {
     en: {
         country: 'England',
-        name: 'The caves of steel'
+            name: 'The caves of steel'
     },
     fr: {
         country: 'France',
-        name: 'Les cavernes d\'acier'
+            name: 'Les cavernes d\'acier'
     }
 }
 ```
@@ -1202,7 +1202,7 @@ the result of the previous request will be :
 ```ts
 {
     country: 'France',
-    name: 'Les cavernes d\'acier'
+        name: 'Les cavernes d\'acier'
 }
 ```
 
@@ -1225,9 +1225,9 @@ update() method needs that your app respects the Genese standards :
 * You must add a genese param to your model like this :
 ```ts
 {
-  "genese": {
-    "path": "/books"
-  }
+    "genese": {
+        "path": "/books"
+    }
 }
 ``` 
 * The endpoint must wait a PUT method.
@@ -1238,7 +1238,7 @@ update() method needs that your app respects the Genese standards :
 
 Supposing that in your environment.ts, `genese.api = http://localhost:3000`
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -1266,10 +1266,10 @@ export class BooksComponent {
     }
 
     this.booksGenese.update('1', updatedBook).subscribe((book: Book) => {
-         // book is the data returned by 
-         // the PUT request http://localhost:3000/books/1
-         // and formatted with type Book
-    });
+    // book is the data returned by 
+    // the PUT request http://localhost:3000/books/1
+    // and formatted with type Book
+});
 }
 ```
 
@@ -1287,7 +1287,7 @@ The `update()` method supposes that the backend returns data corresponding to th
 
 
 [Top](#table-of-contents) -> [Methods](#methods)
-### updateCustom< T >(path: string, body?: object, options?: RequestOptions): Observable<T | any> 
+### updateCustom< T >(path: string, body?: object, options?: RequestOptions): Observable<T | any>
 
 updateCustom() method is used to update a T object in database with a PUT http request and returns a response with ResponseStatus type.
 
@@ -1299,7 +1299,7 @@ However, the backend must wait a PUT http request.
 
 Supposing that in your environment.ts, `genese.api = http://localhost:3000`
 
-``book.model.ts`` 
+``book.model.ts``
 ```ts
 export class Book {
     id ?= '';
@@ -1324,10 +1324,10 @@ export class BooksComponent {
     }
 
     this.booksGenese.update('/custom-books-path/1', updatedBook).subscribe((book: Book) => {
-         // book is the data returned by 
-         // the PUT request http://localhost:3000/custom-books-path/1
-         // and formatted with type Book
-    });
+    // book is the data returned by 
+    // the PUT request http://localhost:3000/custom-books-path/1
+    // and formatted with type Book
+});
 }
 ```
 
