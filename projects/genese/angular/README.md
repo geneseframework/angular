@@ -1,4 +1,4 @@
-# @genese/angular
+# @genese/angular [![npm version](https://badge.fury.io/js/%40genese%2Fangular.svg)](https://badge.fury.io/js/%40genese%2Fangular)
 
 @genese/angular is an Angular library which allows you to remove your data-services and your DTO mappers. This module is a part of the [@genese](https://www.npmjs.com/package/genese) framework.
 

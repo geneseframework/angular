@@ -1,6 +1,6 @@
 {
     "name": "@genese/angular",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "description": "Angular library which allows you to remove your data-services and your DTO mappers. This module is a part of the @genese framework.",
     "author": {
         "name": "Gilles Fabre",
